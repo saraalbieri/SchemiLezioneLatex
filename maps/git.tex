@@ -1,0 +1,103 @@
+\begin{tikzpicture}[ every annotation/.style = {draw,
+                     fill = white, font = \Large}]
+  \path[mindmap,concept color=black!40,text=white,
+    every node/.style={concept,circular drop shadow},
+    git/.style    = {concept color=black!40,font=\large\bfseries,text width=10em},
+    level 1 concept/.append style={font=\Large\bfseries,sibling angle=72,text width=7.7em,level distance=15em,inner sep=0pt},
+    level 2 concept/.append style={font=\bfseries,sibling angle=45,level distance=9em}]
+    
+  node[git] {GIT} [clockwise from=290]
+    child[concept color=blue!60!black] {
+      node[concept] (c_i) {Configurazione e Inizializzazione}[clockwise from=320]
+      child { node[concept] (config) {git config} }
+      child { node[concept] (init) {git init} }
+      child { node[concept] (clone) {git clone}}
+    }
+    child[concept color=green!60!black] {
+      node[concept] (g_m) {Gestione delle Modifiche}[clockwise from=260]
+      child { node[concept] (add) {git add} }
+      child { node[concept] (commit) {git commit} }
+      child { node[concept] (reset) {git reset} }
+    }
+    child[concept color=red!60!black] {
+      node[concept] (g_b) {Gestione dei Branch}[counterclockwise from=90]
+      child { node[concept] (branch) {git branch}}
+      child { node[concept] (checkout) {git checkout} }
+      child { node[concept] (merge) {git merge} }
+    }
+    child[concept color=yellow!60!black] {
+      node[concept] (o_r) {Operazioni remote} [clockwise from=180]
+      child { node[concept] (remote) {git remote}}
+      child { node[concept] (push) {git push} }
+      child { node[concept] (pull) {git pull} }
+      child { node[concept] (fetch) {git fetch} }
+    }
+    child[concept color=black!60!black] {
+      node[concept] (a_c) {Altri comandi} [counterclockwise from=250]
+      child { node[concept] (status) {git status}}
+      child { node[concept] (log) {git log} }
+      child { node[concept] (diff) {git diff} }
+      child { node[concept] (stash) {git stash} }
+    };
+    
+    \info{config.south east}{right,anchor=west,xshift=1em,yshift=-5em}{%
+      \item Configura le impostazioni di Git, come il nome utente e l'email
+      \item Utile per personalizzare le preferenze e configurare il proprio ambiente Git
+    }
+    \info{init.south}{below,anchor=north,xshift=3em,yshift=0em}{%
+      \item Inizializza un nuovo repository Git in una directory, creando il repository .git
+    }
+    \info{clone.south}{below,anchor=north,xshift=-2em,yshift=0em}{%
+      \item Crea una copia locale di un repository remoto esistente, permettendo di scaricare l'intera cronologia del progetto
+    }
+    \info{add.south}{left,anchor=north,xshift=-2.5em,yshift=-0.5em}{%
+      \item Aggiunge file o modifiche all'area di staging, preparandoli per il commit
+      \item Può essere applicato a singoli file o a intere directory
+    }
+    \info{commit.west}{left,anchor=north,xshift=-6.5em,yshift=0em}{%
+      \item Registra le modifiche dallo staging nel repository, creando una nuova entry di commit nella cronologia
+      \item Richiede un messaggio di commit descrittivo
+    }
+    \info{reset.west}{left,anchor=east,xshift=-0.5em,yshift=-1em}{%
+      \item Rimuove file o modifiche dall'area di staging o annulla i commit, consentendo di ri-modificare o scartare i cambiamenti
+    }
+    \info{branch.north west}{left,anchor=south,xshift=-7em,yshift=-1.5em}{%
+      \item Crea, elenca, o elimina rami nel repository
+      \item I rami permettono di sviluppare nuove funzionalità senza modificare il ramo principale
+    }
+    \info{checkout.west}{right,anchor=north east,xshift=-3.5em,yshift=3em}{%
+      \item Sposta la HEAD (puntatore al commit corrente) a un altro ramo o commit, permettendo di lavorare su diverse versioni del progetto
+    }
+    \info{merge.west}{right,anchor=north,xshift=2em,yshift=-3em}{%
+      \item Unisce le modifiche di un ramo nel ramo attivo corrente, combinando il lavoro svolto separatamente
+    }
+    \info{remote.north}{above,anchor=south,xshift=-5em,yshift=7em}{%
+      \item Gestisce i collegamenti con repository remoti, come GitHub
+      \item Permette di aggiungere, rimuovere e visualizzare le connessioni remote
+    }
+    \info{push.north}{above,anchor=south,xshift=3em,yshift=3em}{%
+      \item Invia i commit locali a un repository remoto, aggiornando le modifiche sul server
+      \item È comunemente utilizzato per sincronizzare il lavoro con altri collaboratori
+    }
+    \info{pull.north}{above,anchor=south,xshift=8.5em,yshift=-2em}{%
+      \item Scarica le modifiche da un repository remoto e le unisce nel ramo locale corrente
+      \item git pull è una combinazione di git fetch e git merge
+    }
+    \info{fetch.north}{above,anchor=south,xshift=4.5em,yshift=-16em}{%
+      \item Recupera gli aggiornamenti remoti senza unirli nel ramo corrente
+      \item Utile per visualizzare i cambiamenti remoti prima di applicarli
+    }
+    \info{status.east}{left,anchor=west,xshift=-2.5em,yshift=-6em}{%
+      \item Mostra lo stato dei file, indicando quali file sono stati modificati, aggiunti o rimossi
+    }
+    \info{log.east}{left,anchor=west,xshift=2.2em,yshift=-3em}{%
+      \item Visualizza la cronologia dei commit, fornendo dettagli come autore, data e messaggio del commit
+    }
+    \info{diff.east}{left,anchor=west,xshift=0em,yshift=1.2em}{%
+      \item Confronta i cambiamenti tra file o commit, utile per visualizzare le differenze nel codice
+    }
+    \info{stash.east}{left,anchor=south,xshift=6em,yshift=0em}{%
+      \item Salva temporaneamente le modifiche non confermate, consentendo di lavorare su altre attività senza perdere il lavoro non completato
+    }
+;
+\end{tikzpicture}

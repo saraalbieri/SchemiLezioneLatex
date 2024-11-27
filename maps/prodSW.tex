@@ -1,0 +1,65 @@
+\begin{tikzpicture}[mindmap, grow cyclic, every node/.style=concept, concept color=orange!40, 
+	level 1/.append style={level distance=5cm,sibling angle=60},
+	level 2/.append style={level distance=4cm,sibling angle=47},
+        level 3/.append style={level distance=3cm,sibling angle=50},
+        level 4/.append style={level distance=3cm,sibling angle=105},]
+
+\node{La produzione del Software}
+    child[concept color=blue!30]{node{Sfide di produzione}
+        child{node{Natura evolutiva}
+            child{node{La produzione \'{e} sempre in produzione a causa dei: progressi tecnologici e requisiti in evoluzione}}
+        }
+        child{node{Alta percentuale fallimenti}
+            child{node{75\% dei progetti fallisce a causa di disaglineamenti tra stakeholder, tecnologie in evoluzione e sistemi imperfetti}}
+        }
+    }
+    child[concept color=yellow!40, level 2/.append style={sibling angle=30, level distance=5cm}]{node{Problemi principali}
+        child{node{Modificabilit\'{a}}
+            child{node{Un software si deve aggiornare per addatarsi ai nuovi hardwre o implementare nuove funzionalit\'{a}}}
+        }
+        child{node{Complessit\'{a}}
+            child{node{Composti da parti diverse, rendendo difficile concepirli, descriverli e controllarli}}
+        }
+        child{node{Conformit\'{a}}
+            child{node{Si deve integrare con altri sistemi, con componenti e regolamentazioni diverse}}
+        }
+        child{node{Invisibilit\'{a}}
+            child{node{Non essesno tangibile non si puo vedere come e costruito e mantenuto}}
+        }
+    }
+    child[concept color=teal!50]{node{Tipologie di problemi}
+        child{node{Problemi "Tame"}
+            child{node{Scomponibili in sotto-problemi risolvibili singolarmente}}
+            child{node{Soluzioni finite e oggettivamente giuste o sbagliate}}
+        }
+        child{node[name=wicked1]{Problemi "Wicked"} %named note for arrow
+            child{node{Non danno una formulazione chiara}}
+            child{node{Soluzioni soggettive, molteplici e in continua evoluzione}}
+            child{node{Ogni soluzione puo avere conseguenze irreversibili}}
+        }
+    }
+    child[concept color=purple!50]{node[name=wicked2]{Problema wicked}%name for arrow
+        child{node{Mai perfetto o finito}}
+        child{node{Non esiste una soluzione unica}}
+        child{node{Difficile da pianificare e valutare i risultati in anticipo}}
+    }
+    child[concept color=green!40, level 2/.append style={sibling angle=60, level distance=5cm}]{node{Controllo del processo di produzione}
+        child{node{Quattro modalit\'{a} individuate da M. Harris. La selezione del meccanismo dipende da due fattori:}
+            child{node{Misurabilit\'{a}}}
+            child{node{Specificabilit\'{a}}}
+            }
+        child{node{Richiede un controllo focalizzato sul team, con un coordinamento orizzontale e reciproco}}
+    }
+    child[concept color=pink!80]{node{Modalit\'{a} di coordinamento}
+        child{node{Sequenziale}
+            child{node{Sincronizzare l'input per generare l'output}}
+        }
+        child{node{Risorsa condivisa}
+        child{node{Collabore su un singolo compito alla volta}}
+        }
+        child{node{Risultato comune}
+        child{node{Controllo condiviso sul progetto, con forte interdipendenza dei membri del team}}
+        }
+    };
+\path[->, thick, black](wicked1) edge[bend left=30] (wicked2);
+\end{tikzpicture}

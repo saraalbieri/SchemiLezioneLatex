@@ -1,0 +1,334 @@
+%!TeX encoding = UTF-8 %il file è codificato in UTF-8
+%!TeX spellcheck = it_IT %Imposta il controllo ortografico in italiano.
+\documentclass[portrait,a4paper]{article} %imposta orientamento e formato dell'articolo
+\usepackage[export]{adjustbox} %Fornisce comandi per regolare e manipolare box e immagini.
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry} %Modifica i margini della pagina (2 cm su tutti i lati).
+\usepackage{url} %Gestisce gli URL (per la formattazione e la visualizzazione).
+\usepackage{hyperref} %Aggiunge capacità di collegamento ipertestuale (per aggiungere URL, collegamenti interni nel documento, etc.)
+\usepackage{array}
+\usepackage{tikz}
+\usepackage{lipsum} %per generare testo di riempimento
+\usepackage{natbib}
+\usepackage{graphicx}
+
+\NewDocumentCommand{\doctitle}{}{Progetto del corso} %Crea un comando personalizzato chiamato \doctitle, che quando usato restituirà il testo "Progetto del corso". Questo comando è utile per personalizzare il titolo del documento.
+    
+\setlength{\unitlength}{2.50cm} %Imposta l'unità di misura predefinita per le dimensioni in LaTeX su 2,5 cm 
+\renewcommand{\arraystretch}{2} %Aumenta l'altezza delle righe nelle tabelle, raddoppiandola.
+
+% Importa files esterni.  
+\input{data/teacher-info}    % Questo mette le informazioni del prof.
+\input{data/course-info}     % questo mette il titolo del corso
+\input{data/project-info}    % questo mette il titolo del progetto
+\input{data/students-info}   % questo mette i dati degli studenti
+
+% Importa pacchetti e comandi custom.
+\input{config/packages-imports}
+\input{config/custom-commands}   
+
+% Importa le informazioni sui metadati PDF
+\input{config/hyperef.doc.info}
+
+%\topmargin -70pt
+
+\begin{document} %Inizia il corpo del documento.
+
+%--------------- Header del documento ---------------
+\input{config/document-header} % questo mette tutta la prima pagina   
+  
+% Inserisce le informazioni degli studenti che pesca dal file importato precedentemente.
+\hrule     
+\vspace{.5cm}
+\begin{multicols}{2}
+    \begin{description}[labelindent=0.2cm,leftmargin=2.3cm,style=nextline]
+        %--> First column:         
+        \item[\textsc{Studente}:] \studentA
+        \item[\textsc{Email}:]\emailA
+\vspace{1cm}
+        \item[\textsc{Studente}:] \studentB
+        \item[\textsc{Email}:]\emailB
+\vspace{1cm}
+        \item[\textsc{Studente}:] \studentC
+        \item[\textsc{Email}:]\emailC
+\vspace{1cm}
+        \item[\textsc{Studente}:] \studentD
+        \item[\textsc{Email}:]\emailD
+
+    \end{description}
+\end{multicols}
+\vspace{.5cm}
+\hrule        
+\vspace{.5cm} 
+
+% Questo comando forza una nuova pagina
+\clearpage
+
+%--------------- Sommario ---------------
+\newpage
+\renewcommand*\contentsname{Sommario}
+
+\tableofcontents
+
+ %--------------- Progetto ---------------
+\newpage
+\newgeometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+
+\section{Introduzione}  
+I Disturbi Specifici dell’Apprendimento (DSA) sono disturbi del neuro-sviluppo che riguardano la capacità di leggere, scrivere e calcolare in modo corretto e fluente e che si manifestano con l'inizio della scolarizzazione\footnote{Definizione dal sito dell’Associazione Italiana Dislessia}.
+\par
+Ogni mente umana funziona come un software di reti neurali: così come queste ultime rappresentano una colonna portante del machine learning, allo stesso modo il sistema nervoso, senza la mediazione dei neuroni e delle sinapsi, non potrebbe attuare i processi di apprendimento.
+I DSA sono causati principalmente da “fallimenti della migrazione neurale,” ovvero da un non corretto scorrimento dei neuroni all’interno dell’emisfero sinistro del cervello, dove risiedono compartimenti adibiti alla lettura (dislessia), alla scrittura (disgrafia e disortografia) e al calcolo (discalculia).
+Gli studi hanno tuttavia dimostrato come l'ipoattivazione di queste aree cerebrali possa talvolta comportare l'iperattivazione di altre aree limitrofe o addirittura di compartimenti appartenenti all’emisfero destro \textsuperscript{(\cite{dev_dys})}.
+\par
+È quindi pertinente immaginare(chiaramente semplificando molto) la mente di una persona con DSA come un software d’intelligenza artificiale con un programma di machine learning scritto in modo del tutto diverso rispetto agli altri.
+\par
+Se in un programma normale vi è solitamente un sistema di addestramento relativamente costante (e comune ad altri algoritmi) che genera un apprendimento esponenziale dagli input e dai feedback, in un programma ''DSA'' si potrebbe invece osservare l’opposto: un algoritmo che, non riuscendo a elaborare correttamente gli stimoli esterni, concentra le sue reti neurali nella escogitazione di un sistema di addestramento alternativo.
+\par
+In altre parole, le menti delle persone con DSA, come potenziali sistemi di machine learning non convenzionali, troverebbero difficoltà nella lettura, nel calcolo veloce o nella scrittura ordinata, ma compenserebbero tali mancanze con metodi di studio differenti e spesso con modi innovativi di pensare e vedere le cose.
+Prima che si costruisse un consensus scientifico sui DSA, queste persone sono sempre state esposte a un fortissimo effetto di esternalità di rete: si parla, infatti, di “software mentali” con meccanismi di apprendimento molto differenti da quelli tradizionali, riconosciuti e proposti dal sistema educativo nel corso del tempo.
+\par
+Vi è ragione di credere, tuttavia, che molte menti brillanti e alternative della storia siano state tali anche grazie alle compensazioni cerebrali sopracitate.
+Da qui, si potrebbero riprendere le recenti parole dell'Attore Giampaolo Morelli a ''Le Iene.''
+\par
+\begin{quote}
+\textit{''Io sono dislessico. Lo sono sempre stato [...]. A quel tempo, all'inizio degli anni Ottanta, le diagnosi di dislessia non c'erano, e neppure la pietà c'era. Eri solo un bambino stupido, costretto a soffrire e a vivere in silenzio il tuo senso di inadeguatezza. Oggi la dislessia è riconosciuta come un disturbo dell'apprendimento.
+Ma a me piace vederla anche come un'attitudine differente. Pensare che il mio cervello, come quello di Leonardo da Vinci, Walt Disney, Beethoven, Einstein e decine di migliaia di ragazzi in Italia, semplicemente funzioni in maniera diversa. Sì, perché noi dislessici abbiamo un modo tutto nostro di imparare le cose, che diventa un ostacolo solo quando ci si ostina a utilizzare metodi di insegnamento uguali per tutti, anziché adattarsi alle caratteristiche di ogni studente valorizzandole''} \textsuperscript{\cite{morelli}}.
+\end{quote}
+\par
+Uno degli strumenti compensativi nello studio più rilevanti e utilizzati è quello della mappa concettuale.
+\par
+Il termine fu coniato negli Anni 80 dal Pedagogista Joseph Novak e dal Filosofo Bob Gowin.
+Citando direttamente il loro Saggio “Imparando ad Imparare” è possibile estrarre una definizione di base:
+\begin{quote}
+    \textit{''Una mappa concettuale è un dispositivo schematico per rappresentare un insieme di significati concettuali inseriti in una rete di proposizioni [...]. Le mappe concettuali aiutano a rendere chiaro sia agli studenti sia agli insegnanti il numero limitato di idee chiave su cui concentrarsi per ogni specifico compito di apprendimento [e] dovrebbero essere gerarchiche; ovvero, i concetti più generali e inclusivi dovrebbero trovarsi nella parte superiore della mappa, mentre i concetti progressivamente più specifici e meno inclusivi dovrebbero essere disposti al di sotto di essi''\textsuperscript{\cite{imp}}}.
+    \end{quote}
+    \begin{quote}
+    \centering
+    \includegraphics[width=0.3\linewidth]{img/HowToLearn.jpg}
+    \end{quote}
+Contrariamente a quanto si potrebbe dedurre da questa definizione, non esiste oggi un modello unico di mappa concettuale; non c'è, cioè, solo un modello verticale in cui un concetto generale in cima si dirama in concetti specifici sottostanti fino alla base. Esistono invece molteplici modalità di schematizzazione, ciascuna adattata al metodo di apprendimento preferito.
+\par
+Di seguito saranno analizzati alcuni dati statistici sulla diffusione dei DSA e sull’uso delle mappe concettuali come strumento compensativo; infine, verrá spiegato come realizzare dei modelli tramite l’uso del Programma LaTeX e verranno illustrati alcuni esempi concreti.
+\subsection{I dati}
+In Italia, i disturbi specifici dell’apprendimento (DSA) sono regolati dalla Legge n. 170 dell’8 ottobre 2010, intitolata “Nuove norme in materia di disturbi specifici di apprendimento in ambito scolastico.” \textsuperscript{\cite{L170}}, la quale riconosce la dislessia, la disortografia, la disgrafia e la discalculia come disturbi specifici dell’apprendimento.
+\par
+Attraverso l’adozione di Piani Didattici Personalizzati (PDP), la legge ha promosso misure di supporto nelle scuole, le quali sono obbligate a fornire strumenti e pianificare percorsi di studio specifici per aiutare gli studenti con DSA. Tra questi strumenti troviamo le mappe concettuali, le quali aiutano a superare le difficoltà di apprendimento migliorando anche l’autonomia nello studio. Da uno studio di luglio del 2022 del MUR, negli ultimi anni il numero degli studenti con DSA è aumentato significativamente, con una crescita costante ogni anno.
+\par
+\includegraphics[width=0.9\textwidth]{img/statistica_italia.png}
+\par
+In particolare, nel 2020/2021, si contavano un totale di 326.548 \textsuperscript{\cite{miur}} di cui:
+\begin{itemize} 
+    \item \textbf{48.022 studenti} con DSA nella scuola primaria.
+    \item \textbf{107.389 studenti} con DSA nella scuola secondaria di primo grado.
+    \item \textbf{171.137 studenti }con DSA nella scuola secondaria di secondo grado
+\end{itemize}
+\noindent
+\textbf{A cosa è dovuto questo aumento?}
+\par
+Sicuramente l’applicazione della legge 170/2010 ha giocato un ruolo fondamentale in questo aumento. Le tecniche diagnostiche e la formazione di psicologici e neurologici sono migliorate in questi anni e ciò permette di riconoscere e intervenire sui DSA già a partire dalla scuola primaria. Inoltre i cambiamenti nei contesti sociali e familiari e un'attenzione maggiore verso il benessere psicologico hanno motivato le famiglie ad una maggiore attenzione verso eventuali difficoltà scolastiche dei figli, aumentando i casi riconosciuti.
+\par
+Negli Stati Uniti i disturbi specifici dell'apprendimento sono regolamenti all'interno dell'IDEA (“Individuals with Disabilities Education Act”), fonte normativa che considera i DSA all’interno delle disabilità . L’IDEA, attraverso programmi specifici (“Individualized Education Program, IEP”), garantisce un'istruzione pubblica gratuita, appropriata e personalizzata.
+\par
+Nel 2021/2022, da una ricerca National Center for Education Statistics (NCES), il numero di studenti che hanno usufruito dell’IDEA è stato di circa 7,3 milioni, equivalente al 15\% di tutti gli studenti delle scuole pubbliche, tra un'età compresa tra i 3 e 21 anni. In particolare la categoria maggiormente rappresentativa erano i DSA con il 32\% \textsuperscript{\cite{nces}}.
+\par
+Una principale differenza tra le due legislazioni riguarda la considerazione negli USA dei DSA come disabilità, mentre la legge italiana considera i DSA come una categoria distinta. La legge 170/2010 evita di equiparare i DSA alle disabilità fisiche o cognitive, evidenziando piuttosto che si tratta di una forma di difficoltà specifica nell’apprendimento.
+\par
+Le risorse tecnologiche utili all’apprendimento in entrambe le norme non sono definite, lasciando spazio di valutazione ai singoli istituti o ai singoli stati considerando le difficoltà dei DSA e nel caso americano di tutti gli studenti con disabilità.
+\par
+L’utilizzo di nuove strumentazioni tecnologiche, ad esempio le lavagne LIM (Lavagne interattive multimediali) e tablet a supporto dell’insegnamento, hanno permesso lo sviluppo di software di video-scrittura e lo sviluppo di applicazioni utili all’apprendimento, tra cui l’app SimpleMind Pro utilizzata come base per la creazione di mappe concettuali per questo nostro progetto. Nei successivi paragrafi spiegheremo la creazione delle Mappe concettuali attraverso LaTex, strumento utile per la didattica.
+
+%--------------- \nuova pagina ---------------
+\newpage
+\newgeometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+\section{Il progetto}  
+L’approccio adottato per la traduzione delle mappe concettuali in linguaggio LaTex ha richiesto un’attenta considerazione di diversi fattori per raggiungere l’obiettivo principale di mantenere una fedeltà alle idee originali assicurando al contempo che risultano efficaci e accessibili.
+\par
+Le mappe concettuali sono state realizzate utilizzando LaTex e la libreria TikZ\textsuperscript{\cite{Tikz}}, nota per l’abilità di creare diagrammi complessi in modo preciso e personalizzabile permettendo di mantenere la struttura gerarchica e le connessioni logiche delle mappe concettuali. La struttura \'{e} stata organizzata a partire da un nodo centrale da quale partono nodi secondari che rappresentano i temi principali. Ogni nodo secondario a sua volta può includere ulteriori nodi figli, che approfondiscono i contenuti tematici in dettaglio.
+\par
+Dopo l’installazione e il setup del pacchetto TikZ si può proseguire alla creazione, di seguito sono mostrati alcuni modi in cui lo abbiamo utilizzato:
+\begin{itemize} 
+    \item Creazione dei nodi, che rappresentano i concetti principali e adiacenti di un argomento:
+        \begin{quote}
+            \textit{\textbackslash node[concept color=blue!60] {Concetto Principale};}
+        \end{quote}
+    \item Connessioni tra nodi rappresentano le relazioni logiche tra i concetti. TikZ ci permette di disegnare linee o frecce, personalizzabili in termine di direzione e stile, tra i nodi per indicare queste relazioni;
+    \item Struttura gerarchica:
+        \begin{quote}
+            \textit{\textbackslash node[concept] {Concetto Generale}\\
+               	    \textbackslash child { \textbackslash node[concept] {Concetto Specifico 1} }\\
+                        \textbackslash child { \textbackslash node[concept] {Concetto Specifico 2} };}
+        \end{quote}
+\end{itemize}
+Durante il processo di creazione delle mappe, sono state adottate anche specifiche strategie per ottimizzare la rappresentazione grafica e la leggibilità come la regolazione degli angoli tra i nodi figli, la personalizzazione delle distanze e l’uso di colori diversi per differenziare i vari livelli. In questo modo si \'{e} evitata la sovrapposizione tra le bolle, migliorando la distribuzione spaziale e l’estetica complessiva. 
+\par
+Di seguito sono riportati dettagli tecnici che si sono utilizzati per la ottimizzazione visiva:
+\begin{itemize} 
+    \item L’organizzazione degli angoli e delle distanze dei nodi figli:
+        \begin{itemize}
+            \item Sono stati personalizzati gli angoli di separazione tra i nodi figli, per evitare la sovrapposizione dei nodi e dei testi adiacenti con l’uso del parametro sibling angle;
+            \item È stata modificata la lunghezza dei collegamenti tra i nodi tramite level distance per garantire una separazione chiara tra le bolle.
+        \end{itemize}
+    \item La personalizzazione dei colori:
+        \begin{itemize}
+            \item I colori dei nodi sono stati modificati utilizzando le tonalità fornite dalla libreria xcolor. Ogni nodo ha un colore distinto per migliorare la leggibilità e migliorare l’identificazione tematica, come yellow!40 che indica una combinazione di 40\% di giallo e 60\% bianco.
+        \end{itemize}
+    \item La gestione del testo nei nodi:
+        \begin{itemize}
+            \item Il testo dei nodi può essere modificato in modo da accogliere il testo meglio, con l’aiuto di textwidth=10em. Così si garantisce la leggibilità del testo.
+        \end{itemize}
+\end{itemize}
+L'uso di questo pacchetto ha permesso di evitare un'eccessiva complessità tecnica, concentrandosi invece su come la tecnologia possa supportare l'apprendimento inclusivo. La possibilità di personalizzare colori, forme e connessioni ha reso le mappe concettuali più accessibili, facilitando la comprensione e l'interazione con il materiale didattico.
+\par
+In questo modo, la tecnologia si è dimostrata un alleato potente nel rendere l'apprendimento più personalizzato, rispondendo alle diverse esigenze degli studenti con DSA. 
+Nella parte successiva, verrà illustrata la parte tecnica di LaTex trattata dal nostro gruppo, illustrando come queste personalizzazioni possano essere implementate per migliorare ulteriormente l'efficacia didattica.
+
+\subsection{Elenco delle funzioni utilizzate} 
+Il progetto è costituito da diverse cartelle, contenenti files suddivisi per utilizzo.
+\par
+All’interno della cartella \textbf{config} ci sono i seguenti files:
+\begin{itemize}
+    \item \textbf{packages-imports.tex}: è un insieme di comandi in LaTeX che configura l'aspetto del documento, aggiungendo funzionalità per personalizzare intestazioni e piè di pagina, creare elenchi, disegnare figure e impostare caratteri specifici;
+    \item \textbf{custom-commands.tex}: è un insieme di comandi in LaTeX che configura vari elementi di formattazione e layout, tra cui intestazioni personalizzate, regole orizzontali, liste numerate e box informativi; 
+    \item \textbf{document-header.tex}: Il codice LaTeX descritto in questo file configura l’intestazione del documento, allineando il logo e le informazioni istituzionali, separando visivamente le sezioni con linee e spazi, e centrando il nome del progetto e il link al repository per una chiara visualizzazione delle informazioni iniziali;
+    \item \textbf{hyperef.doc.info.tex}: Il codice LaTeX viene utilizzato per configurare i metadati nel documento PDF generato dal compilatore LaTeX. I metadati sono informazioni aggiuntive che vengono incorporati nel PDF e che non sono visibili nel corpo del documento, ma che possono essere lette da software di visualizzazione PDF o da strumenti di ricerca.
+\end{itemize}
+\par
+All’interno della cartella \textbf{data} sono contenuti file contenenti informazioni su dati da inserire all’interno del documento, come: autori del progetto, materia di studio, ecc; ma anche schemi e mappe concettuali che essendo esterne al documento principale sonno essere spostate facilmente in posto diverso all’interno del documento.
+\par
+All’interno della cartella \textbf{img} sono inserite tutte le immagini utilizzate all’interno del progetto.
+\par
+Il file principale, \textbf{MappeConcettuali.tex}, è nella root del progetto e contiene i richiami ai file descritti sopra, oltre a tutto il progetto.\\
+\par
+\noindent
+Pacchetti base utilizzati:
+\begin{itemize}
+    \item \textbf{\textbackslash usepackage\{fancyhdr, lastpage, bbding, pmboxdraw\}}:
+        \begin{itemize}
+            \item \textbf{fancyhdr}: permette di personalizzare le intestazioni e i piè di pagina del documento. Fornisce comandi per modificare il contenuto di questi elementi;
+            \item \textbf{lastpage}: consente di riferirsi all'ultima pagina del documento, utile per numerare le pagine in formati tipo "Pagina X di Y";
+            \item \textbf{bbding}: include un insieme di simboli decorativi e segni di spunta che possono essere usati per creare elenchi o evidenziare parti del testo;
+            \item \textbf{pmboxdraw}: include una serie di simboli utili per disegnare bordi e riquadri di testo.
+        \end{itemize}
+    \item \textbf{\textbackslash usepackage\{titlesec\}}: permette di personalizzare l’aspetto dei titoli di sezioni e sottosezioni, regolando font, dimensioni e spaziatura.
+    \item \textbf{\textbackslash usepackage\{fontspec\}}: fontspec è un pacchetto che consente di usare caratteri specifici con XeLaTeX o LuaLaTeX. In questo caso è stato scelto il carattere OpenDyslexic\footnote{ (https://opendyslexic.org/)}, che può migliorare la leggibilità per persone con dislessia. Il comando \setmainfont{OpenDyslexic} imposta il carattere OpenDyslexic come font principale del documento.
+    \item \textbf{\textbackslash usepackage\{tikz\}}: TikZ è un pacchetto per creare grafici e diagrammi direttamente in LaTeX.
+\end{itemize}
+\par
+\noindent
+Librerie base utilizzate:
+\begin{itemize}
+    \item \textbf{\textbackslash usetikzlibrary\{mindmap, shadows, trees, positioning\}}. Di seguito alcuni delle opzioni utilizzate:
+        \begin{itemize}
+            \item \textbf{mindmap}: permette di creare mappe mentali;
+            \item \textbf{shadows}: aggiunge ombre agli elementi grafici per dare un effetto tridimensionale;
+            \item \textbf{trees}: fornisce strumenti per creare strutture ad albero, come grafici gerarchici o alberi genealogici;
+            \item \textbf{positioning}: aiuta a posizionare gli elementi di TikZ in modo più preciso;
+            \item \textbf{grow cyclic}: specifica che i nodi figli (o rami) saranno disposti in un cerchio attorno al nodo genitore. Ogni nodo figlio è posizionato a intervalli angolari uguali (o specificati manualmente) rispetto al centro;
+        \end{itemize}
+\end{itemize}
+\par
+\noindent
+Principali comandi utilizzati:
+\begin{itemize}
+    \item \textbf{\textbackslash node{}}: Serve per creare un elemento grafico (un nodo) in un diagramma. Un nodo è un punto di ancoraggio che può contenere testo, simboli o grafica e che può essere collegato ad altri nodi tramite linee, frecce o curve.\\
+    \textbf{Sintassi:}\textbackslash node[opzioni](nome\_coordinata)\{contenuto\};\\
+    \textbf{Componenti principali}
+        \begin{itemize}
+            \item \textbf{[opzioni]} (facoltativo): permette di configurare l'aspetto del nodo (ad esempio, colore, forma, posizione);
+            \item \textbf{(nome\_coordinata)} (facoltativo): identifica il nodo con un nome, utile per riferimenti successivi (ad esempio, per disegnare frecce verso questo nodo);
+            \item \textbf{\{contenuto\}} (obbligatorio): contiene il testo o l'elemento grafico da visualizzare all'interno del nodo.
+        \end{itemize}
+     \item \textbf{\textbackslash child{}}: Serve per creare nodi figli in una struttura gerarchica (come una mappa concettuale o un albero). Ogni nodo creato con \textbackslash child diventa un figlio del nodo genitore, che si trova al livello immediatamente superiore nella gerarchia.\\
+     \textbf{Sintassi:}\textbackslash child{ node[opzioni] \{contenuto\} };\\
+     \textbf{Componenti principali}:
+     \begin{itemize}
+            \item \textbf{node[opzioni]}: specifica lo stile del nodo figlio, ad esempio la forma, il colore, o il contenuto;
+            \item \textbf{\{contenuto}\}: contiene il testo o la grafica del nodo figlio;
+    \end{itemize}
+    \item \textbf{\textbackslash draw{}}: è utilizzato per disegnare linee, curve, forme e altre strutture grafiche.\\
+    \textbf{Sintassi:}\textbackslash draw[opzioni] (punto1) -- (punto2) -- ... -- (puntoN);\\
+    \textbf{Componenti principali}:
+        \begin{itemize}
+            \item \textbf{[opzioni]} (facoltativo): specifica lo stile del disegno, come colore, spessore, tratteggio, ecc.;
+            \item \textbf{(punto1), (punto2), ...}: specifica i punti del percorso da disegnare. I punti possono essere specificati come coordinate assolute (x, y) o relative ++(dx, dy).
+        \end{itemize}
+    \item \textbf{\textbackslash path\{\}}: è utilizzato per definire un percorso senza disegnarlo visivamente. È simile al comando \textbackslash draw, ma non produce alcuna grafica visibile di default. È particolarmente utile per definire percorsi, posizionare nodi o calcolare coordinate, lasciando la possibilità di aggiungere elementi grafici separatamente.\\
+    \textbf{Sintassi:}\textbackslash path[opzioni] (punto1) -- (punto2) -- ... -- (puntoN);\\
+    \textbf{Componenti principali}:
+        \begin{itemize}
+            \item \textbf{[opzioni]} (facoltativo): definisce le caratteristiche del percorso (simile a \textbackslash draw), come stile e comportamento;
+            \item \textbf{(punto1), (punto2), ...}: specifica i punti del percorso da disegnare. I punti possono essere specificati come coordinate assolute (x, y) o relative ++(dx, dy).
+        \end{itemize}
+\end{itemize}
+
+%--------------- \nuova pagina ---------------
+\newpage
+\newgeometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+\section{Mappa "Il software"}
+
+%--------------- Importa il workflow di git --------------- 
+\flushleft
+\resizebox{7.2in}{!}{
+    \input{maps/git}
+}
+
+%--------------- \nuova pagina ---------------
+\newpage
+\newgeometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+\section{Mappa "GIT workflow"} 
+
+%--------------- Importa il workflow di git --------------- 
+\flushleft
+\resizebox{7.2in}{!}{
+    \input{maps/workflowGit}
+    }
+
+%--------------- \nuova pagina ---------------
+\newpage
+\newgeometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+\section{Mappa "Comandi GIT"} 
+%\noindent
+
+%--------------- Importa la mappa dei comandi git --------------- 
+\flushleft
+\resizebox{7.2in}{!}{
+    \input{maps/git}
+}
+
+%--------------- \nuova pagina ---------------
+\newpage
+\newgeometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+\section{Mappa "La produzione del software"}  
+
+%--------------- Importa la mappa della produzione del software --------------- 
+\flushleft
+\resizebox{7.2in}{!}{
+    \input{maps/prodSW}
+}
+
+%--------------- \nuova pagina ---------------
+\newpage
+
+\section{Mappa "La storia del software"} 
+
+%--------------- Importa la mappa della storia del software --------------- 
+\flushleft
+\resizebox{7.2in}{!}{
+    \input{maps/storiaSW}
+}
+
+
+%--------------- \nuova pagina ---------------
+\newpage
+\newgeometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+\renewcommand{\bibsection}{\section*{Riferimenti}}
+\addcontentsline{toc}{section}{Riferimenti}
+\bibliography{data/riferimenti}
+
+\end{document} 

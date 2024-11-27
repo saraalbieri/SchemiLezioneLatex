@@ -1,0 +1,41 @@
+\begin{tikzpicture}[mindmap, grow cyclic, every node/.style=concept, concept color=orange!40, 
+	level 1/.append style={level distance=5cm,sibling angle=60},
+	level 2/.append style={level distance=4cm,sibling angle=47},
+        level 3/.append style={level distance=3cm,sibling angle=50},
+        level 4/.append style={level distance=3cm,sibling angle=70},]
+
+\node{La storia della produzione del software}
+    child[concept color=orange]{node{Origini e motivazioni}
+        child{node{Primo calcolatore, Alan Turing (1944)}}
+        child{node{Primo PC, Olivetti 1966}}
+        child{node{Crescita dei calcolatori associata all'emergenza della crisi del software}}
+    }
+    child[concept color=violet!70, level 2/.append style={sibling angle=60, level distance=5cm}]{node{La crisi del software}
+        child{node{Causata dalla complessit\'{a} dei sistemi e dalla mancanza di metodi standardizzati}}
+        child{node{Problemi: sforameto di budget e tempi, software di bassa qualit\'{a} e progetti ingestibili e non consegnati.}}
+    }
+    child[concept color=magenta!90]{node{Errori noti}
+        child[concept color=magenta!70]{node{NASA Mars Climate Orbiter(1998)- errore di conversione unit\'{a}}}
+        child[concept color=magenta!70]{node{Ariane 5 Flight 501 (1996)- overflow di dati}}
+    }
+    child[concept color=yellow!70]{node{Modelli di sviluppo tradizionali}
+        child{node{Waterfall Modell}
+            child{node{Fasi: pianificazione, progettazione, sviluppo, test, consegna, manutenzione}}
+            child{node{Vantaggi: semplice, sequenziale}}
+            child{node{Svantaggi: rigidit\'{a}, impossibilit\'{a} di iterare facilmente}}
+        }
+        child{node{Spiral Mode}
+            child{node{Approccio iterativo}}
+            child{node{Enfasi sulla gestione del rischio e feedback degli stakeholder}}
+        }
+    }
+    child[concept color=purple!70, level 2/.append style={sibling angle=60, level distance=5cm}]{node{Manifesto Agile(2001)}
+        child{node{Filosofia: sviluppo collaborativo e risposta rapida ai cambiamenti}}
+        child{node{Principi chiave: Priorit\'{a} al cliente, consegna continua di software funzionante, collaborazione tra team.}}
+    }
+    child[concept color=red!70]{node{Evoluzioni recenti}
+        child{node{Lean software development: riduzione sprechi e incremento dell'efficienza.}}
+        child{node{Integrazione di techniche moderne per addatarsi ai problemi "wicked"}}
+    }
+;
+\end{tikzpicture}

@@ -1,0 +1,67 @@
+\begin{tikzpicture}[mindmap, grow cyclic, concept color=red!50,
+    level 1/.append style={level distance=5cm, sibling angle=90,minimum size=0pt},
+    level 2/.append style={level distance=3.0cm, sibling angle=50},
+    level 3/.append style={level distance=2.5cm, sibling angle=50},
+    info/.style={rectangle,minimum size=0pt, draw=black, fill=white, text=black,font = \small}]
+
+% Nodo centrale
+\node[concept,concept color=red!50] (intro) {Introduzione al Software}
+
+    child[concept color=green!40] {node [concept] {Come aumentare il valore del software}
+        child {node(A)[concept] {Sfruttando l'esternalità}}
+        child {node(B)[concept] {Segmentando il mercato}}
+        child {node(C)[concept] {Bundling }}
+    }
+    child[concept color=orange!40] {node [concept] {Il valore del software}
+        child {node[concept] {Esterno}
+             child {node[concept] {Interoperabilità tra utenti}}
+             child {node[concept] (inter) {Interoperabilità tra prodotti}}
+             child {node[concept] {Attese generate}}
+             }
+        child {node[concept]  {Interno}
+             child {node[concept] {Funzionalità}}
+             child {node[concept] {Qualità}} 
+             }
+    }
+    child[concept color=purple!40] {node [concept] (ext) {Esternalità di Rete}
+        child {node [concept] {Effetti sul mercato}
+             child {node(lock)[concept]{Lock-in}}
+             child {node(band)[concept]{Bandwagon Effect}
+                }
+        }
+    }
+    child[concept color=yellow!40] {node (L)[concept]{Concetto di Software}
+        child {node[concept] (copy){ Protetto da copyright}
+            child {node[concept] { Diritto d'autore - \\70 anni a partire dalla morte dell'autore}}
+            child {node[concept] { Brevetto - \\ 25 anni
+    dalla creazione}}
+        }
+        child {node(l)[concept]{ Struttura di costo ad L -}
+    }
+    };  
+   % Freccia dal nodo centrale a un figlio
+\node[info, below right=2cm  of ext] (ext2) {Il valore di un prodotto aumenta quanti più utenti utilizzano tale prodotto o prodotti compatibili es: Ecosistema Apple.};
+\node[info, above right=1cm of band] (band2) {I mercati con forti esternalità di rete stimolano le aziende a saltare sul carro di nuove tecnologie, anche se tali tecnologie devono ancora provare la loro efficacia.};
+\node[info, right=1cm  of lock] (lock2) {Barriere di ingresso, ovvero sono presenti costi aggiuntivi per passare ad altri prodotti equivalenti.};
+\node[info, above left=1cm  of l] (l2) {Il costo si concentra sulla creazione della prima unità di software. Il software non viene venduto ma concesso in licenza.};
+\node[info, right =1cm of C] (C2) {Alla vendita del mio prodotto ne affianco un altro indipendente o connesso a esso a costo zero/ridotto, strategia usata per legare l'utente al brand con più prodotti.};
+\node[info, left =5cm of intro] (intro2) {Il Software è il risultato di un atto creativo della mente umana, la cui produzione è sempre in divenire.};
+\node[info, below right=1cm  of inter] (inter2) {La capacità di un sistema informatico di cooperare e scambiare informazioni o servizi con altri sistemi/prodotti attraverso formati compatibili. Es: Suite Office3};
+\node[info, right=2cm  of copy] (copy2) {Il software, in generale, è protetto dal diritto d'autore e non dal brevetto. Tuttavia, ci sono eccezioni in cui è possibile brevettare es: se presentato come un “metodo”, o come “mezzo tecnico che implementa un metodo”.};
+
+\node[below left =3cm  of B] (common) {\input{mappe/table}};
+
+\draw[->, thick, color=purple!40, line width=2pt] (ext) to (ext2);
+\draw[->, thick, color=purple!40, line width=2pt] (band) to (band2);
+\draw[->, thick, color=purple!40, line width=2pt] (lock) to (lock2);
+\draw[->, thick, color=yellow!40, line width=2pt] (l) to (l2);
+\draw[->, thick, color=yellow!40, line width=2pt] (copy) to (copy2);
+\draw[->, thick, color=green!40, line width=2pt] (C) to (C2);
+\draw[->, thick, color=red!50, line width=2pt] (intro) to (intro2);
+\draw[->, thick, color=orange!40, line width=2pt] (inter) to (inter2);
+  % Linee dai nodi al punto comune
+
+\draw[->, thick, color=green!40,line width=2pt] (A)  to (common);
+\draw[->, thick, color=green!40, line width=2pt] (B)  to (common);
+\draw[->, thick, color=green!40, line width=2pt] (C)  to (common);
+\end{tikzpicture}

@@ -1,0 +1,33 @@
+%---------------------------------------------------------------------
+%-- The following produces the document header including the title.  |
+%---------------------------------------------------------------------
+\begin{tabular}{p{30mm}|p{110mm}} %30 mm prima cella 110mm seconda cella
+
+% prima colonna
+\includegraphics[width=2.5cm,valign=m]{img/unibo_logo.png} &  %& indica che passo alla prossima cella
+
+% seconda colonna
+\textsc{\college} 
+\newline
+\textsc{Dipartimento di Scienze Politiche e Sociali} 
+\newline
+\textsc{Dipartimento di Informatica -- Scienza e Ingegneria} \\
+
+\end{tabular}
+
+%\noindent % <-- need to have this first.
+\hfill	
+{
+%- Here we insert the project info: that is, the project name and other project informations.    
+    \centering
+    \vspace{.5cm}
+    \customhrule{0.5pt}
+    \vspace{1.5cm}
+        {\textsc{\doctitle}\par}
+    \vspace{1.5cm}
+        {\Large \textsc{Titolo del Progetto: } \projectname \par}
+    \vspace{1.5cm}
+		{\textsc{Repository GitHub: } \sitogitproject \par}
+}
+
+\vspace{8cm}

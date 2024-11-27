@@ -1,0 +1,141 @@
+\begin{tikzpicture}[>=Latex,thick]
+        
+    % Nodo principale per la creazione del repository
+        \node (REPO) {Crea il Repository};
+        % Aggiunta di una descrizione per REPO
+        \node[ellipse,draw, left=0.5cm of REPO, text width=6cm, align=left] (REPO_DESC) {\footnotesize Si crea un repository (ad esempio su Git) con un branch principale (di solito chiamato main o master), che rappresenta la versione stabile del progetto.};
+        
+    % Nodo per la creazione del branch di sviluppo
+        \node[below=1.2cm of REPO] (B_DEV) {Crea branch di sviluppo};
+        % Aggiunta di una descrizione per B_DEV
+        \node[ellipse,draw, right=0.5cm of B_DEV, text width=6cm, align=left] (B_DEV_DESC) {\footnotesize Un branch develop può essere creato a partire dal branch principale. Questo diventa la base di sviluppo per le nuove funzionalità e le modifiche, riducendo l'impatto sul branch principale.};
+        
+    % Nodo Feature Branche
+        \node[below=2.3cm of B_DEV, cyan] (FB) {Feature Branch}; 
+        % Aggiunta di una descrizione per FB
+        \node[ellipse,draw, left=0.8cm of FB, text width=6cm, align=left] (FB_DESC) {\footnotesize Una nuova funzionalità viene sviluppata in un feature branch separato (ad esempio, feature/nome-funzionalità), partendo da develop. In questo modo si mantiene il codice in sviluppo isolato.};
+
+    %Nodo Commit
+        \node[below=1.5cm of FB, cyan] (COMMIT) {Commit};
+        % Aggiunta di una descrizione per COMMIT
+        \node[ellipse,draw, right=1.5cm of COMMIT, text width=6cm, align=left] (COMMIT_DESC) {\footnotesize Durante lo sviluppo, vengono effettuati diversi commit per registrare le modifiche incrementali.};
+
+    %Nodo Pull Request
+        \node[below=1.5cm of COMMIT, cyan] (PR) {Pull Request};
+        % Aggiunta di una descrizione per Pull Request
+        \node[ellipse,draw, left=1cm of PR, text width=6cm, align=left] (PR_DESC) {\footnotesize Una volta che la funzionalità è completata e testata, viene aperta una pull request per fondere (merge) il feature branch nel branch develop.};
+
+    %Nodo Code Review e Test
+        \node[below=1.5cm of PR, cyan] (CRT) {Code Review e Test};
+        % Aggiunta di una descrizione per Code Review e Test
+        \node[ellipse,draw, right=0.5cm of CRT, text width=6cm, align=left] (CRT_DESC) {\footnotesize Il team di sviluppo esamina il codice e conferma che rispetti gli standard e funzioni correttamente.};     
+
+    %Nodo Merge
+        \node[below=1.5cm of CRT, cyan] (MRG) {Merge};
+        % Aggiunta di una descrizione per Merge
+        \node[ellipse,draw, left=1.5cm of MRG, text width=6cm, align=left] (MRG_DESC) {\footnotesize Se tutto è a posto, la funzionalità viene fusa in develop.};
+
+
+    % Creazione del rettangolo (Sviluppo)
+        \begin{scope}[on background layer]
+            \node[fit=(FB)(COMMIT)(PR)(CRT)(MRG),fill=cyan!20,rounded corners] (RCTL_1) {};
+            \node[above=0.5cm of RCTL_1,cyan](SV){\footnotesize Sviluppo};
+        \end{scope}
+
+    %Nodo Preparazione Rilascio
+        \node[below=1.5cm of MRG, orange] (P_RIL) {Preparazione Rilascio};
+        % Aggiunta di una descrizione per Preparazione Rilascio
+        \node[ellipse,draw, right=0.5cm of P_RIL, text width=6cm, align=left] (P_RIL_DESC) {\footnotesize Quando una nuova versione è pronta, si crea un release branch (es. release/v1.0) partendo dal branch develop. In questo branch si fanno solo piccole correzioni e miglioramenti minori necessari per la pubblicazione.};
+
+    %Nodo Test Finale
+        \node[below=1.5cm of P_RIL, orange] (TF) {Test Finale};
+        % Aggiunta di una descrizione per Test Finale
+        \node[ellipse,draw, left=1.2cm of TF, text width=6cm, align=left] (TF_DESC) {\footnotesize Il branch di rilascio passa per un ultimo ciclo di test.};
+
+    % Creazione del rettangolo (rilascio in test)
+        \begin{scope}[on background layer]
+            \node[fit=(P_RIL)(TF),fill=orange!20,rounded corners] (RCTL_2) {};
+            \node[above=0.5cm of RCTL_2,orange](RT){\footnotesize Rilascio in test};
+        \end{scope}
+
+    %Nodo Merge su Main
+        \node[below=1.5cm of TF, green] (RIL) {Rilascio su Main};
+        % Aggiunta di una descrizione per Preparazione Rilascio
+        \node[ellipse,draw, right=0.5cm of RIL, text width=6cm, align=left] (RIL_DESC) {\footnotesize Quando il release branch è stabile, viene fuso nel branch principale main e viene creato un tag (es. v1.0) per identificare ufficialmente la versione rilasciata.};
+
+    %Nodo Merge su Develop
+        \node[below=1.5cm of RIL, green] (RIL_DEV) {Merge su DEV};
+        % Aggiunta di una descrizione per Test Finale
+        \node[ellipse,draw, left=1.2cm of RIL_DEV, text width=6cm, align=left] (RIL_DEV_DESC) {\footnotesize Per mantenere allineato il branch di sviluppo, il release branch viene fuso anche in develop.};
+
+    % Creazione del rettangolo (rilascio in test)
+        \begin{scope}[on background layer]
+            \node[fit=(RIL)(RIL_DEV),fill=green!20,rounded corners] (RCTL_3) {};
+            \node[above=0.5cm of RCTL_3,green](RT){\footnotesize Rilascio della versione};
+        \end{scope}
+
+    %Nodo Creazione di Hotfix Branch
+        \node[below=1.5cm of RIL_DEV, purple] (HOT_B) {Creazione di Hotfix Branch};
+        % Aggiunta di una descrizione per Preparazione Rilascio
+        \node[ellipse,draw, right=0.5cm of HOT_B, text width=6cm, align=left] (HOT_B_DESC) {\footnotesize Se dopo il rilascio viene rilevato un problema critico, si crea un hotfix branch (es. hotfix/v1.0.1) partendo da main.};
+
+    %Nodo Correzione problema
+        \node[below=1.5cm of HOT_B, purple] (CORR) {Correzione del problema};
+        % Aggiunta di una descrizione per Correzione del problema
+        \node[ellipse,draw, left=0.5cm of CORR, text width=6cm, align=left] (CORR_DESC) {\footnotesize Il problema viene risolto nel branch hotfix.};
+
+    %Nodo Correzione problema
+        \node[below=1.5cm of CORR, purple] (RIS_HOT_B) {Correzione del problema};
+        % Aggiunta di una descrizione per Correzione del problema
+        \node[ellipse,draw, right=0.5cm of RIS_HOT_B, text width=6cm, align=left] (RIS_HOT_B_DESC) {\footnotesize Una volta risolto, l’hotfix viene fuso sia su main sia su develop, e viene rilasciata una nuova versione patch (es. v1.0.1).};
+
+    % Creazione del rettangolo (Hotfix Branch)
+        \begin{scope}[on background layer]
+            \node[fit=(HOT_B)(CORR)(RIS_HOT_B),fill=purple!20,rounded corners] (RCTL_4) {};
+            \node[above=0.5cm of RCTL_4,purple](RT){\footnotesize Correzioni rapide (Hotfix Branch)};
+        \end{scope}
+
+    %Nodo ripeti ciclo
+        \node[below=1.5cm of RIS_HOT_B] (RIP_CICLO) {Ripeti il ciclo};
+        % Aggiunta di una descrizione per ripeti ciclo
+        \node[ellipse,draw, left=1.5cm of RIP_CICLO, text width=6cm, align=left] (RIP_CICLO_DESC) {\footnotesize Il ciclo riprende per nuove funzionalità o versioni successive.};
+
+        % Creazione delle frecce di connessione
+        \draw[->] (REPO) -- (B_DEV);
+        \draw[->] (B_DEV) -- (FB);
+        \draw[->, cyan] (FB) -- (COMMIT);
+        \draw[->, cyan] (COMMIT) -- (PR);
+        \draw[->, cyan] (PR) -- (CRT);
+        \draw[->, cyan] (CRT) -- (MRG);
+        \draw[->] (MRG) -- (P_RIL);
+        \draw[->, orange] (P_RIL) -- (TF);
+        \draw[->] (TF) -- (RIL);
+        \draw[->, green] (RIL) -- (RIL_DEV);
+        \draw[->] (RIL_DEV) -- (HOT_B);
+        \draw[->, purple] (HOT_B) -- (CORR);
+        \draw[->, purple] (CORR) -- (RIS_HOT_B);
+        \draw[->] (RIS_HOT_B) -- (RIP_CICLO);
+
+        \draw[->, blue] (RIP_CICLO.east) -- ++(11,0) |- (SV.east);
+        
+        % Creazione dei trattini di collegamento descrizione
+        \draw (REPO) -- (REPO_DESC);
+        \draw (B_DEV) -- (B_DEV_DESC);
+        \draw (FB) -- (FB_DESC);
+        \draw (COMMIT) -- (COMMIT_DESC);
+        \draw (PR) -- (PR_DESC);
+        \draw (CRT) -- (CRT_DESC);
+        \draw (MRG) -- (MRG_DESC);
+        \draw (P_RIL) -- (P_RIL_DESC);
+        \draw (TF) -- (TF_DESC);
+        \draw (RIL) -- (RIL_DESC);
+        \draw (RIL_DEV) -- (RIL_DEV_DESC);
+        \draw (HOT_B) -- (HOT_B_DESC);
+        \draw (CORR) -- (CORR_DESC);
+        \draw (RIS_HOT_B) -- (RIS_HOT_B_DESC);
+        \draw (RIP_CICLO) -- (RIP_CICLO_DESC);
+        
+        % Bordo intorno all'intero workflow
+        \node[fit=(REPO)(FB_DESC)(REPO_DESC)(B_DEV_DESC)(PR_DESC)(CRT_DESC)(MRG_DESC)(TF_DESC)(P_RIL_DESC)(RIL_DEV_DESC)(RIS_HOT_B_DESC)(RIP_CICLO_DESC)(HOT_B_DESC),rounded corners,draw]{};
+
+    \end{tikzpicture}

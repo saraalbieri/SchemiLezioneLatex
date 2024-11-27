@@ -1,0 +1,87 @@
+%======================================
+% Creates an underlined non-numbered section header.
+\makeatletter
+\makeatother
+
+%----------------------------------------------------------------
+%--> \customsection: makes unumbered small caps section heading.|
+%----------------------------------------------------------------
+\titleformat*{\section}{\bfseries\large} 
+\newcommand{\customsection}[1]{
+	\section{\textsc{#1}}\label{sec:#1} 
+	% Reduce the vertical space below section headings.
+	\vspace{-0.1cm} 
+}
+%--------------------------------------------------------
+%--> \customhrule: makes a customized rule whose width  | 
+%                  should be passed as parameter.       |
+%--------------------------------------------------------
+\newcommand{\customhrule}[1]{
+	\rule[1.4pt]{\linewidth}{#1}
+}
+%------------------------------------------------------
+%--> \doublerule: makes a double rule.                |
+%------------------------------------------------------ 
+\newcommand{\doublerule}[1][.4pt]{
+	\noindent
+	\makebox[0pt][l]{\rule[.7ex]{\linewidth}{#1}}%
+	\rule[1pt]{\linewidth}{#1}\par} 
+%===== Custom Ruler commands  ==================
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0.4pt}
+% Disable spaces between list items in a labeled list.
+\setlist{noitemsep}
+
+%======= Numbered list: non-filled circle list ======================= Tenere
+% ➀
+\newlist{numberedEmptyList}{itemize}{9}
+\setlist[numberedEmptyList]{topsep=4pt,partopsep=0pt,itemsep=3pt,parsep=0pt,labelindent=0.5cm,leftmargin=*}
+\setlist[numberedEmptyList,9]{label=\ding{182}}
+
+%=================================================================================================
+% Command for styling tabled row header (left, center or right)
+% Usage example: \thead{<Header text 1>} & \thead{<Header 2>} & \thead{<Header 3>} & \thead{<Header 4>} 
+\newcommand*{\thead}[1]{\multicolumn{1}{l}{\bfseries #1}}	
+
+%--------------------------------------------------
+% ==== Doc header and footer setup.               |
+%-------------------------------------------------- 
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\fancyhf{}
+%- Disable the horizontal ruler in the header section.
+\renewcommand{\headrulewidth}{0pt}
+\chead{}
+\rfoot{\fancyplain{}{pagina \thepage\ di \pageref{LastPage}}}
+\cfoot{}
+\lfoot{{\tiny{ \coursetitle} }}
+%- TODO: move the header content here.
+\fancyfoot[RO,LE] {{\tiny{pagina \thepage\ di \pageref{LastPage} }}} %RO=right odd, LE=left even 
+\thispagestyle{plain}
+\pagestyle{fancy}
+%------------------------------------------------------------
+
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+%-- Spacing commands ------ 
+\newcommand{\vspbpara}{\vspace*{.09in}}    
+\newcommand{\customvspace}{\vspace{.5cm}}    
+\titlespacing{\section}{0pt}{12pt}{9pt}
+%-----
+\newcommand{\vtitlespacing}{\vskip 0.3cm}
+%\newcommand{\paragraphentry}[1]{\noindent \textbf{\Large \underline{#1}} }
+
+
+% Information boxes
+\newcommand*{\info}[4][16.3]{%
+  \node [ annotation, #3, scale=0.65, text width = #1em,inner sep = 2mm ] at (#2) {%
+  \list{$\bullet$}{\topsep=0pt\itemsep=0pt\parsep=0pt
+    \parskip=0pt\labelwidth=8pt\leftmargin=8pt
+    \itemindent=0pt\labelsep=2pt}%
+    #4
+  \endlist
+  };
+}
+
+
+%Refernces
+\bibliographystyle{plainnat}
